@@ -6,13 +6,17 @@ public class BorderCreation : MonoBehaviour
 {
     public GameObject borderCell;
 
+    public static int borderSize;
+
+    public Camera cam;
+
     void Start()
     {
         GameObject border = new GameObject("Border");
 
-        Debug.Log(borderCell.name);
+        //Debug.Log(borderCell.name);
 
-        int borderSize = AreaChanger.sizeFromApplyButton;
+        borderSize = AreaChanger.sizeFromApplyButton;
 
         for (int i = -1; i < borderSize + 1; i++)
         {
@@ -25,5 +29,15 @@ public class BorderCreation : MonoBehaviour
 
             }
         }
+
+        cam = GetComponent<Camera>();
+
+        int tmpSizeCam = borderSize / 2;
+
+        cam.orthographicSize = tmpSizeCam;
+        cam.transform.position = new Vector3(tmpSizeCam, tmpSizeCam, -10);
     }
+
+    //public SetSize
+
 }

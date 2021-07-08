@@ -10,12 +10,16 @@ public class AreaChanger : MonoBehaviour
 
     public static int sizeFromApplyButton = 10;
 
-    private void Start()
+    private void OnEnable()
     {
         applyButton = GetComponent<Button>();
         slider = GetComponentInParent<Slider>();
-    }
 
+        sizeFromApplyButton = (int)slider.value;
+
+        //Debug.Log(sizeFromApplyButton);
+    }
+/*
     private void Update()
     {
         applyButton.onClick.AddListener(SendSize);
@@ -26,4 +30,5 @@ public class AreaChanger : MonoBehaviour
         sizeFromApplyButton = (int)slider.value;
         //Debug.Log("sizeFromApplyButton из SendSize: " + sizeFromApplyButton);
     }
+*/
 }

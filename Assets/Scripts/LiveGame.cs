@@ -15,7 +15,7 @@ public class LiveGame : MonoBehaviour
 
     public Slider slider;
     public GameObject prefub;
-    public Camera cam;
+    //public Camera cam;
 
     public bool[][] points = new bool[defaultLength][];
     public bool[][] points_new = new bool[defaultLength][];
@@ -23,20 +23,15 @@ public class LiveGame : MonoBehaviour
     void Start()
     {
 
-        Debug.Log("sizeFromApplyButton из LiveGame: " + AreaChanger.sizeFromApplyButton);
+        //Debug.Log("sizeFromApplyButton из LiveGame: " + AreaChanger.sizeFromApplyButton);
 
-        limitLength = AreaChanger.sizeFromApplyButton;
+        limitLength = BorderCreation.borderSize;
 
-        Debug.Log("limitLength из LiveGame: " + limitLength);
+        //Debug.Log("limitLength из LiveGame: " + limitLength);
 
-        cam = GetComponent<Camera>();
 
-        int tmpSizeCam = (limitLength != 0 ? limitLength : defaultLength) / 2;
 
-        cam.orthographicSize = tmpSizeCam;
-        cam.transform.position = new Vector3(tmpSizeCam, tmpSizeCam, -10);
-
-        Debug.Log("START");
+        //Debug.Log("START");
 
         System.Array.Resize(ref points, limitLength);
         //System.Array.Resize(ref points_new, limitLength);
