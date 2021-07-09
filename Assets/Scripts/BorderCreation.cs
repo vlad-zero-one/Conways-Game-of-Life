@@ -37,7 +37,4 @@ public class BorderCreation : MonoBehaviour
         cam.orthographicSize = tmpSizeCam;
         cam.transform.position = new Vector3(tmpSizeCam, tmpSizeCam, -10);
     }
-
-    //public SetSize
-
 }

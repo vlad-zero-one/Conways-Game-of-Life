@@ -11,6 +11,7 @@ public class PatternBrush : MonoBehaviour
     private GameObject objectForPattern;
     private SpriteRenderer spriteRenderer;
 
+
     void OnEnable()
     {
         Start();
@@ -37,10 +38,10 @@ public class PatternBrush : MonoBehaviour
 
     void Update()
     {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         if (patternName != "")
         {
-
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             var patternPosition = new Vector2((int)mousePos.x, (int)mousePos.y);
             objectForPattern.transform.position = patternPosition;
@@ -55,6 +56,9 @@ public class PatternBrush : MonoBehaviour
                 Destroy(objectForPattern);
                 this.enabled = false;
             }
+
+            CameraZoom.Zoom();
+
         }
     }
 

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 521954428062559167, guid: b443c81c073bd954d9ca4a78aaa6ca99,
         type: 3}
       propertyPath: m_Name
-      value: Cell
+      value: CellForDrawing
       objectReference: {fileID: 0}
     - target: {fileID: 521954428062559105, guid: b443c81c073bd954d9ca4a78aaa6ca99,
         type: 3}
@@ -66,6 +66,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 521954428062559166, guid: b443c81c073bd954d9ca4a78aaa6ca99,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b443c81c073bd954d9ca4a78aaa6ca99, type: 3}

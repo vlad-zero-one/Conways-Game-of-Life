@@ -6,14 +6,8 @@ public class DrawingPattern : MonoBehaviour
 {
     private GameObject cellPrefab, instantiated;
 
-
-    void OnEnable()
-    {
-        Start();
-    }
-
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         cellPrefab = Resources.Load("Prefabs/Patterns/CellForDrawing") as GameObject;
         instantiated = Instantiate(cellPrefab, Vector2.zero, Quaternion.identity);
