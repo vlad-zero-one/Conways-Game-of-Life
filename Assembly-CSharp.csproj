@@ -57,8 +57,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\AreaChanger.cs" />
      <Compile Include="Assets\Scripts\BorderCreation.cs" />
+     <Compile Include="Assets\Scripts\CameraZoom.cs" />
      <Compile Include="Assets\Scripts\CellBehaviour.cs" />
      <Compile Include="Assets\Scripts\DrawingPattern.cs" />
+     <Compile Include="Assets\Scripts\Erase.cs" />
      <Compile Include="Assets\Scripts\LiveGame.cs" />
      <Compile Include="Assets\Scripts\PatternBrush.cs" />
      <Compile Include="Assets\Scripts\SliderSizeHandler.cs" />
