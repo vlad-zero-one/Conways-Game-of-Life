@@ -331,7 +331,7 @@ public class LiveGame : MonoBehaviour
             {
                 if (points[i + neighbour.Item1][j + neighbour.Item2]) result++;
             }
-            catch (System.IndexOutOfRangeException e)
+            catch (System.IndexOutOfRangeException)
             {
 
             }
