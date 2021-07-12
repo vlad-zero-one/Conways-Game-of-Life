@@ -55,15 +55,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\SavePattern.cs" />
      <Compile Include="Assets\Scripts\AreaChanger.cs" />
      <Compile Include="Assets\Scripts\BorderCreation.cs" />
      <Compile Include="Assets\Scripts\CameraZoom.cs" />
      <Compile Include="Assets\Scripts\CellBehaviour.cs" />
+     <Compile Include="Assets\Scripts\CreatedPatternsSrollView.cs" />
      <Compile Include="Assets\Scripts\DrawingPattern.cs" />
      <Compile Include="Assets\Scripts\Erase.cs" />
      <Compile Include="Assets\Scripts\LiveGame.cs" />
      <Compile Include="Assets\Scripts\PatternBrush.cs" />
+     <Compile Include="Assets\Scripts\PlayerPrefsLoading.cs" />
+     <Compile Include="Assets\Scripts\PlayerPrefsSaving.cs" />
+     <Compile Include="Assets\Scripts\SavePattern.cs" />
+     <Compile Include="Assets\Scripts\ScrollViewHandler.cs" />
      <Compile Include="Assets\Scripts\SliderSizeHandler.cs" />
      <Compile Include="Assets\Scripts\SliderValueChange.cs" />
  <Reference Include="Unity.Timeline.Editor">
