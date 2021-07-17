@@ -14,7 +14,7 @@ public class Erase : MonoBehaviour
     // Start is called before the first frame update
     void OnEnable()
     {
-        eraser = Resources.Load("Prefabs/Patterns/CellForDrawing") as GameObject;
+        eraser = Resources.Load("Prefabs/Patterns/CellForErasing") as GameObject;
         eraser = Instantiate(eraser, Vector2.zero, Quaternion.identity);
         /*
         eraser.GetComponentInChildren<SpriteRenderer>().color = new Color(

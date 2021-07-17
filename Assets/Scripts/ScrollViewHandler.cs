@@ -9,7 +9,7 @@ public class ScrollViewHandler : MonoBehaviour
     Dictionary<string, bool[][]> loadedPatterns;
     GameObject instantiated;
 
-    void Start()
+    void OnEnable()
     {
         loadedPatterns = PlayerPrefsLoading.LoadAllSavedPatterns();
         if (loadedPatterns != null)
@@ -25,6 +25,9 @@ public class ScrollViewHandler : MonoBehaviour
                 GameObject patternButton = CreateButton(loadedPattern);
                 //Debug.Log(gameObject.transform.Find("Content").name);
                 patternButton.transform.SetParent(transform.Find("Viewport").Find("Content"));
+                RectTransform rect = patternButton.GetComponent<RectTransform>();
+                rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 300);
+                rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 300);
             }
         }
     }
@@ -34,9 +37,24 @@ public class ScrollViewHandler : MonoBehaviour
         GameObject patternButton = new GameObject(nameArrayPair.Key);
         Image image = patternButton.AddComponent<Image>();
         Button innerButton = patternButton.AddComponent<Button>();
+
+        // name apeared on the pattern
         GameObject textForButton = new GameObject("Text");
-        textForButton.AddComponent<Text>().text = nameArrayPair.Key;
+        Text text = textForButton.AddComponent<Text>();
+        text.text = nameArrayPair.Key;
+        Font ArialFont = (Font)Resources.GetBuiltinResource(typeof(Font), "Arial.ttf");
+        text.font = ArialFont;
+        //text.material = ArialFont.material;
+        text.alignment = TextAnchor.MiddleCenter;
+        text.color = Color.black;
+        text.fontSize = 24;
+        text.fontStyle = FontStyle.Bold;
+        
+
         textForButton.transform.SetParent(patternButton.transform);
+
+        var old_rect = patternButton.GetComponent<RectTransform>().rect;
+        patternButton.GetComponent<RectTransform>().rect.Set(old_rect.x, old_rect.y, 300, 300);
 
         // creating new sprite for button
         int spriteWidth = pixelsPerUnit;
@@ -135,7 +153,19 @@ public class ScrollViewHandler : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                Instantiate(instantiated, patternPosition, Quaternion.identity);
+                foreach (Transform cellTransform in instantiated.transform)
+                {
+                    var cellPos = cellTransform.position;
+                    if (cellPos.x >= 0 &&
+                        cellPos.x < BorderCreation.borderSize &&
+                        cellPos.y >= 0 &&
+                        cellPos.y < BorderCreation.borderSize)
+                    {
+                        Vector3 vec = new Vector3(cellTransform.position.x, cellTransform.position.y);
+                        var instCell = Instantiate(cellTransform.gameObject, vec, Quaternion.identity);
+                    }
+                    //Instantiate(instantiated, patternPosition, Quaternion.identity);
+                }
             }
             if (Input.GetMouseButtonDown(1))
             {
@@ -144,4 +174,5 @@ public class ScrollViewHandler : MonoBehaviour
             }
         }
     }
+
 }

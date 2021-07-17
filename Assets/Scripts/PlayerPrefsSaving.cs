@@ -12,6 +12,11 @@ public class PlayerPrefsSaving : MonoBehaviour
         Button saveButton = GetComponent<Button>();
         string nameForNewPattern = saveButton.transform.Find("InputField").Find("Text").GetComponent<Text>().text;
         SavePattern(nameForNewPattern);
+        saveButton.transform.Find("InputField").gameObject.SetActive(false);
+        var scrollView = GameObject.Find("Scroll View");
+        Debug.Log(scrollView);
+        scrollView.SetActive(false);
+        scrollView.SetActive(true);
     }
 
     void SavePattern(string patternName)

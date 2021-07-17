@@ -32,9 +32,9 @@ public class BorderCreation : MonoBehaviour
 
         cam = GetComponent<Camera>();
 
-        int tmpSizeCam = borderSize / 2;
+        float tmpSizeCam = borderSize / 2f;
 
-        cam.orthographicSize = tmpSizeCam;
-        cam.transform.position = new Vector3(tmpSizeCam, tmpSizeCam, -10);
+        cam.orthographicSize = tmpSizeCam + 1;
+        cam.transform.position = new Vector3(tmpSizeCam - 0.5f, tmpSizeCam - 0.5f, -10);
     }
 }
