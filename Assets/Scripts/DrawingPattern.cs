@@ -6,7 +6,6 @@ public class DrawingPattern : MonoBehaviour
 {
     private GameObject cellPrefab, instantiated;
 
-    // Start is called before the first frame update
     void OnEnable()
     {
         cellPrefab = Resources.Load("Prefabs/Patterns/CellForDrawing") as GameObject;
@@ -14,7 +13,6 @@ public class DrawingPattern : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -25,8 +23,13 @@ public class DrawingPattern : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            
-            Instantiate(cellPrefab, patternPosition, Quaternion.identity);
+            if (patternPosition.x >= 0
+                && patternPosition.x < BorderCreation.borderSize
+                && patternPosition.y >= 0
+                && patternPosition.y < BorderCreation.borderSize)
+            {
+                Instantiate(cellPrefab, patternPosition, Quaternion.identity);
+            }
         }
         if (Input.GetMouseButtonDown(1))
         {
