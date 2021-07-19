@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerPrefsSaving : MonoBehaviour
@@ -14,7 +12,6 @@ public class PlayerPrefsSaving : MonoBehaviour
         SavePattern(nameForNewPattern);
         saveButton.transform.Find("InputField").gameObject.SetActive(false);
         var scrollView = GameObject.Find("Scroll View");
-        Debug.Log(scrollView);
         scrollView.SetActive(false);
         scrollView.SetActive(true);
     }
@@ -61,18 +58,6 @@ public class PlayerPrefsSaving : MonoBehaviour
         {
             patternBoolArray[i] = new bool[maxY - minY + 1];
         }
-        /*
-        string formatter = "";
-        for (int i = 0; i < patternBoolArray.Length; i++)
-        {
-            for (int j = 0; j < patternBoolArray[0].Length; j++)
-            {
-                formatter += (patternBoolArray[i][j] ? "1" : "0") + " ";
-            }
-            formatter += "\n";
-        }
-        Debug.Log(formatter);
-        */
         foreach (var cell in cellsForPattern)
         {
             patternBoolArray[(int)cell.transform.position.x - minX][(int)cell.transform.position.y - minY] = true;
@@ -88,8 +73,6 @@ public class PlayerPrefsSaving : MonoBehaviour
             stringForSaving += "|";
         }
         stringForSaving = stringForSaving.TrimEnd('|');
-        Debug.Log(stringForSaving);
-
 
         PlayerPrefs.SetString(patternName, stringForSaving);
         PlayerPrefs.Save();

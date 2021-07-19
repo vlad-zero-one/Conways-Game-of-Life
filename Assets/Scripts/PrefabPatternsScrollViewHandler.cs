@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
 
 public class PrefabPatternsScrollViewHandler : MonoBehaviour
 {
@@ -10,13 +7,15 @@ public class PrefabPatternsScrollViewHandler : MonoBehaviour
 
     void Start()
     {
-        string basePath = "/Resources/Prefabs/Patterns/";
         Sprite[] loadedSprites = Resources.LoadAll<Sprite>("Sprites/Patterns/");
         foreach(var sprite in loadedSprites)
         {
-            if (File.Exists(Application.dataPath + basePath + sprite.name + ".prefab"))
+            GameObject pattern = Resources.Load("Prefabs/Patterns/" + sprite.name) as GameObject;
+            if(pattern)
             {
                 GameObject button = CreateButton(sprite);
+                button.GetComponent<Button>().onClick.AddListener(() => DrawPatternFromScroll(pattern));
+
                 button.transform.SetParent(gameObject.transform.Find("Viewport").Find("Content").transform);
                 RectTransform rect = button.GetComponent<RectTransform>();
                 rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 300);
@@ -46,13 +45,11 @@ public class PrefabPatternsScrollViewHandler : MonoBehaviour
         text.fontStyle = FontStyle.Bold;
         textForButton.transform.SetParent(mainButton.transform);
 
-        innerButton.onClick.AddListener(() => DrawPatternFromScroll(sprite.name));
         return mainButton;
     }
 
-    void DrawPatternFromScroll(string patternName)
+    void DrawPatternFromScroll(GameObject patternPrefab)
     {
-        GameObject patternPrefab = Resources.Load("Prefabs/Patterns/" + patternName) as GameObject;
         instantiated = Instantiate(patternPrefab, Vector2.zero, Quaternion.identity);
     }
 
@@ -61,9 +58,7 @@ public class PrefabPatternsScrollViewHandler : MonoBehaviour
         if (instantiated)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
             var patternPosition = new Vector2((int)mousePos.x, (int)mousePos.y);
-
             instantiated.transform.position = patternPosition;
 
             if (Input.GetMouseButtonDown(0))
@@ -78,16 +73,12 @@ public class PrefabPatternsScrollViewHandler : MonoBehaviour
                     {
                         Vector3 vec = new Vector3(cellTransform.position.x, cellTransform.position.y);
                         var instCell = Instantiate(cellTransform.gameObject, vec, Quaternion.identity);
-
                     }
                 }
-
-                //Instantiate(instantiated, patternPosition, Quaternion.identity);
             }
             if (Input.GetMouseButtonDown(1))
             {
                 Destroy(instantiated);
-                //this.enabled = false;
             }
         }
     }

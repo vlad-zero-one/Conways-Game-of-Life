@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DrawingPattern : MonoBehaviour
 {
@@ -10,15 +8,12 @@ public class DrawingPattern : MonoBehaviour
     {
         cellPrefab = Resources.Load("Prefabs/Patterns/CellForDrawing") as GameObject;
         instantiated = Instantiate(cellPrefab, Vector2.zero, Quaternion.identity);
-
     }
 
     void Update()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         var patternPosition = new Vector2((int)mousePos.x, (int)mousePos.y);
-
         instantiated.transform.position = patternPosition;
 
         if (Input.GetMouseButtonDown(0))
@@ -34,7 +29,7 @@ public class DrawingPattern : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Destroy(instantiated);
-            this.enabled = false;
+            enabled = false;
         }
     }
 }

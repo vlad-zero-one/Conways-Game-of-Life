@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPrefsLoading : MonoBehaviour
@@ -40,9 +39,6 @@ public class PlayerPrefsLoading : MonoBehaviour
             bool[][] patternBoolArray;
 
             string[] patternNames = PlayerPrefs.GetString("SavedPatternsName").Split(',');
-
-            Debug.Log(PlayerPrefs.GetString("SavedPatternsName"));
-
             foreach (string patternName in patternNames)
             {
                 patternBoolArray = LoadPattern(patternName);

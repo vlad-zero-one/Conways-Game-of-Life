@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BorderCreation : MonoBehaviour
 {
@@ -10,12 +8,9 @@ public class BorderCreation : MonoBehaviour
 
     public Camera cam;
 
-    void Start()
+    void OnEnable()
     {
         GameObject border = new GameObject("Border");
-
-        //Debug.Log(borderCell.name);
-
         borderSize = AreaChanger.sizeFromApplyButton;
 
         for (int i = -1; i < borderSize + 1; i++)

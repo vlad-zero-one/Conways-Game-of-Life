@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,16 +13,9 @@ public class ScrollViewHandler : MonoBehaviour
         loadedPatterns = PlayerPrefsLoading.LoadAllSavedPatterns();
         if (loadedPatterns != null)
         {
-            Debug.Log(loadedPatterns.Count);
-
-            foreach (var loadedPattern in loadedPatterns)
-            {
-                Debug.Log(loadedPattern.Key);
-            }
             foreach (var loadedPattern in loadedPatterns)
             {
                 GameObject patternButton = CreateButton(loadedPattern);
-                //Debug.Log(gameObject.transform.Find("Content").name);
                 patternButton.transform.SetParent(transform.Find("Viewport").Find("Content"));
                 RectTransform rect = patternButton.GetComponent<RectTransform>();
                 rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 300);
@@ -103,8 +95,7 @@ public class ScrollViewHandler : MonoBehaviour
 
         image.sprite = patternSprite;
         image.preserveAspect = true;
-
-        //delegate { DrawPatternFromScroll(sprite.name); }
+        
         innerButton.onClick.AddListener(() => DrawPatternFromScroll(nameArrayPair.Key));
 
         return patternButton;
@@ -115,19 +106,6 @@ public class ScrollViewHandler : MonoBehaviour
         GameObject cellPrefab = Resources.Load("Prefabs/Patterns/CellForDrawing") as GameObject;
 
         bool[][] patternBoolArray = loadedPatterns[patternName];
-
-        /*
-        string format = "";
-        for (int i = 0; i < patternBoolArray.Length; i++)
-        {
-            for (int j = 0; j < patternBoolArray[i].Length; j++)
-            {
-                format += (patternBoolArray[i][j] ? "1" : "0") + " ";
-            }
-            format += "\n";
-        }
-        Debug.Log(format);
-        */
         instantiated = new GameObject(patternName);
         for (int x = 0; x < patternBoolArray.Length; x++)
         {
@@ -164,13 +142,11 @@ public class ScrollViewHandler : MonoBehaviour
                         Vector3 vec = new Vector3(cellTransform.position.x, cellTransform.position.y);
                         var instCell = Instantiate(cellTransform.gameObject, vec, Quaternion.identity);
                     }
-                    //Instantiate(instantiated, patternPosition, Quaternion.identity);
                 }
             }
             if (Input.GetMouseButtonDown(1))
             {
                 Destroy(instantiated);
-                //this.enabled = false;
             }
         }
     }
