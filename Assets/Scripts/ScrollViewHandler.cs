@@ -10,16 +10,20 @@ public class ScrollViewHandler : MonoBehaviour
 
     void OnEnable()
     {
+        Transform contentObjectTransform = transform.Find("Viewport").Find("Content");
         loadedPatterns = PlayerPrefsLoading.LoadAllSavedPatterns();
         if (loadedPatterns != null)
         {
             foreach (var loadedPattern in loadedPatterns)
             {
-                GameObject patternButton = CreateButton(loadedPattern);
-                patternButton.transform.SetParent(transform.Find("Viewport").Find("Content"));
-                RectTransform rect = patternButton.GetComponent<RectTransform>();
-                rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 300);
-                rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 300);
+                if (!contentObjectTransform.Find(loadedPattern.Key))
+                {
+                    GameObject patternButton = CreateButton(loadedPattern);
+                    patternButton.transform.SetParent(contentObjectTransform);
+                    RectTransform rect = patternButton.GetComponent<RectTransform>();
+                    rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 300);
+                    rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 300);
+                }
             }
         }
     }
