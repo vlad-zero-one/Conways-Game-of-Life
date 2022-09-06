@@ -17,6 +17,10 @@ public class LiveGame : MonoBehaviour
     public bool[][] points = new bool[defaultLength][];
     public bool[][] points_new = new bool[defaultLength][];
 
+    private readonly (int, int)[] neighs_coor = new (int, int)[] {
+            (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0)
+        };
+
     void OnEnable()
     {
         limitLength = BorderCreation.borderSize;
@@ -101,19 +105,16 @@ public class LiveGame : MonoBehaviour
 
     private int GetNeighboursCount(int i, int j)
     {
-        (int, int)[] neighs_coor = { (-1, 1), (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0) };
+        var result = 0;
 
-        int result = 0;
-
-        foreach ((int, int) neighbour in neighs_coor)
+        foreach (var (corX, corY) in neighs_coor)
         {
-            try
+            if (i + corX >= 0 && i + corX < points.Length)
             {
-                if (points[i + neighbour.Item1][j + neighbour.Item2]) result++;
-            }
-            catch (System.IndexOutOfRangeException)
-            {
-                // undefined behaviour
+                if (j + corY >= 0 && j + corY < points[i + corX].Length)
+                {
+                    if (points[i + corX][j + corY]) result++;
+                }
             }
         }
 
