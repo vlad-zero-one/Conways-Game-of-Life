@@ -30,10 +30,21 @@ public class LiveGame : MonoBehaviour
             points[i] = new bool[limitLength];
         }
         GameObject[] startingCells = GameObject.FindGameObjectsWithTag("Cell");
+
         foreach (var cell in startingCells)
         {
-            points[(int)cell.transform.position.x][(int)cell.transform.position.y] = true;
+            var x = (int)cell.transform.position.x;
+            var y = (int)cell.transform.position.y;
+
+            if (points.Length > x)
+            {
+                if (points[x].Length > y)
+                {
+                    points[x][y] = true;
+                }
+            }
         }
+
         for (int i = 0; i < limitLength; i++)
         {
             for (int j = 0; j < limitLength; j++)
